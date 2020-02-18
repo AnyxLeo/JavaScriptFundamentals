@@ -9,8 +9,7 @@ function fakeAjax(url, cb) {
   let randomDelay = (Math.round(Math.random() * 1e4) % 8000) + 1000;
 
   console.log(`Requesting: ${url}`);
-
-  setTimeout(() => cb(url, fakeResponses[url]), randomDelay);
+  setTimeout(() => cb(fakeResponses[url]), randomDelay);
 }
 
 function output(text) {
@@ -26,7 +25,8 @@ function handleResponses(fileName, content) {
 
   for (let i = 0; i < fileNames.length; i++) {
     if (fileNames[i] in responses) {
-      if (typeof( responses[fileNames[i]] ) === "string") {
+      if (typeof responses[fileNames[i]] === "string") {
+        console.log(responses[fileNames[i]]);
         output(responses[fileNames[i]]);
         responses[fileNames[i]] = false;
       }
